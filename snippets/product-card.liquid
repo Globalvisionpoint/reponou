@@ -20,6 +20,14 @@
 {%- liquid
   assign variant = product_card_product.selected_or_first_available_variant
 
+  if show_badge == nil
+    assign show_badge = true
+  endif
+
+  if show_price == nil
+    assign show_price = true
+  endif
+
   assign productCountdown = product_card_product.metafields.metaname.countdown_timer.value
   assign todayDate = 'now' | date: '%s'
   assign countDownDate = productCountdown | date: '%s'
@@ -51,7 +59,7 @@
 
 <div class="product__card {{ className }} product__card--{{ card_style }} {% if box_shadow %} product__shadow {% endif %} {% if corner_radius %} product--corner-radius-true{% endif %} color-{{ color_scheme }}">
   <div class="product__card__thumbnail card--client-height {{ second_image_class }}">
-    {%- if show_badge -%}
+    {%- if show_badge or product_card_product.compare_at_price > product_card_product.price or product_card_product.available == false -%}
       {%- render 'product-badge', product: product_card_product -%}
     {%- endif -%}
 
@@ -180,9 +188,7 @@
       </h3>
     {%- endif -%}
 
-    {%- if show_price -%}
-      {% render 'price', product: product_card_product, price_class: price_class %}
-    {%- endif -%}
+    {% render 'price', product: product_card_product, price_class: price_class %}
 
        {% if settings.color_swatches %}
       {% if color_swatches %}

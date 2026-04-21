@@ -1,6 +1,14 @@
 {%- liquid
   assign variant = product_card_product.selected_or_first_available_variant
 
+  if show_badge == nil
+    assign show_badge = true
+  endif
+
+  if show_price == nil
+    assign show_price = true
+  endif
+
   assign first_variant_featured_media_check = false
   if variant.featured_media == null
     assign first_variant_featured_media_check = true
@@ -19,7 +27,7 @@
 
 <div class="product__card--list  {% if corner_radius %} product--corner-radius-true{% endif %} color-{{ color_scheme }}">
   <div class="product__card-list__thumbnail {{ second_image_class }}">
-    {%- if show_badge -%}
+    {%- if show_badge or product_card_product.compare_at_price > product_card_product.price or product_card_product.available == false -%}
       {%- render 'product-badge', product: product_card_product -%}
     {%- endif -%}
 
@@ -72,9 +80,7 @@
     {%- endif -%}
 
     <div class="product-card-list--price-cart">
-      {%- if show_price -%}
-        {% render 'price', product: product_card_product, price_class: price_class %}
-      {%- endif -%}
+      {% render 'price', product: product_card_product, price_class: price_class %}
 
       {%- if show_cart_button -%}
         <div class="product-card-list-action-buttons ">

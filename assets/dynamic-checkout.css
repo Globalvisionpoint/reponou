@@ -62,3 +62,87 @@ button.button__notify--product {
     border: none;
     padding: 1.5rem 0;
 }
+
+.product .shopify-payment-button {
+  margin-top: 1.2rem;
+}
+
+.product .shopify-payment-button__button--unbranded {
+  position: relative;
+  width: 100%;
+  min-height: 5.3rem;
+  padding: 0 1.5rem 0 5.3rem !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border-radius: 1.5rem !important;
+  background: linear-gradient(135deg, #e22038 0%, #cf1d38 52%, #bb1732 100%) !important;
+  color: #ffffff !important;
+  font-size: 1.08rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  box-shadow: 0 12px 24px rgba(201, 31, 57, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.14) !important;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.product .shopify-payment-button__button--unbranded::before {
+  content: '⚡';
+  position: absolute;
+  left: 1.15rem;
+  top: 50%;
+  width: 2.8rem;
+  height: 2.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+  font-size: 1.45rem;
+  line-height: 1;
+  z-index: 1;
+}
+
+.product .shopify-payment-button__button--unbranded::after {
+  content: '';
+  position: absolute;
+  left: 5rem;
+  right: 1rem;
+  top: 50%;
+  height: 58%;
+  transform: translateY(-50%);
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(160, 15, 41, 0.36) 0%, rgba(183, 18, 47, 0.16) 100%);
+  z-index: -1;
+}
+
+.product .shopify-payment-button__button--unbranded:hover,
+.product .shopify-payment-button__button--unbranded:hover:not([disabled]) {
+  background: linear-gradient(135deg, #e22038 0%, #cf1d38 52%, #bb1732 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 14px 26px rgba(201, 31, 57, 0.26), inset 0 1px 0 rgba(255, 255, 255, 0.16) !important;
+  filter: brightness(1.02);
+}
+
+@media only screen and (max-width: 749px) {
+  .product .shopify-payment-button__button--unbranded {
+    min-height: 4.8rem;
+    padding: 0 1.1rem 0 4.8rem !important;
+    font-size: 1rem;
+  }
+
+  .product .shopify-payment-button__button--unbranded::before {
+    left: 1rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.25rem;
+  }
+
+  .product .shopify-payment-button__button--unbranded::after {
+    left: 4.45rem;
+    right: 0.8rem;
+    height: 56%;
+  }
+}
